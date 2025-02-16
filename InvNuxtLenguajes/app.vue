@@ -43,7 +43,10 @@
 
     <!-- Contenido Dinámico con Transiciones -->
     <NuxtPage />
-    <FooterSection />
+    <footer>
+      <FooterSection />
+    </footer>
+    
   </div>
 </template>
 <script setup>
@@ -66,4 +69,7 @@ header {
   background-color: rgba(0, 0, 0, 0.8);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+
+
 </style>

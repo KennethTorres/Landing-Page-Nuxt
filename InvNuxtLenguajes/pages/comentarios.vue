@@ -7,7 +7,6 @@
       <h2 class="text-3xl font-bold text-center text-white mb-8">
         Comentarios
       </h2>
-
       <!-- Botón para abrir el formulario -->
       <div class="flex justify-center mb-8">
         <button
@@ -17,7 +16,6 @@
           Escribe tú Comentario.
         </button>
       </div>
-
       <!-- Contenedor de comentarios -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Bucle para mostrar comentarios -->
@@ -45,7 +43,6 @@
               </p>
             </div>
           </div>
-
           <!-- Calificación -->
           <div class="flex items-center mb-4">
             <span class="text-yellow-500 mr-2">
@@ -53,7 +50,7 @@
                 v-for="star in parseInt(comment.calificacion) || 0"
                 :key="star"
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 fill-current"
+                class="h-5 w-5 display inline-block fill-current"
                 viewBox="0 0 20 20"
               >
                 <path
@@ -65,7 +62,6 @@
               >{{ comment.calificacion || "0" }}/5</span
             >
           </div>
-
           <!-- Descripción -->
           <p class="text-gray-700">
             {{ comment.descripcion || "Sin descripción." }}
@@ -96,6 +92,12 @@ onMounted(() => {
 
 <style scoped>
 .section {
+  /* Imagen de fondo */
   background-image: url("assets/image/fondo.jpg");
+  background-size: cover; /* Cubre todo el espacio */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita repetición */
+  background-color: #333; /* Color de respaldo si la imagen no carga */
+  min-height: 100vh; /* Altura mínima de la pantalla */
 }
 </style>
