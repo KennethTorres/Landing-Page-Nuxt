@@ -111,7 +111,6 @@ export default {
       }
       console.log("Datos del formulario antes de emitir:", this.formData);
       this.$emit("submit", { ...this.formData });
-      alert("¡Comentario enviado!");
       this.$emit("close");
       this.resetForm();
     },

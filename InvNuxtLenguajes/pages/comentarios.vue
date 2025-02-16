@@ -1,7 +1,10 @@
 <template>
   <div>
     <!-- Modal de formulario -->
-    <ModalForm v-if="isModalOpen" @close="closeModal" @submit="addComment" />
+    <ModalForm v-if="isModalOpen" @close="closeModal" @submit="handleCommentSubmit" />
+    <transition name="fade">
+      <Alert v-if="showAlert" @close="hideAlert" />
+    </transition>
     <section class="section p-8 bg-gray-100">
       <!-- Título -->
       <h2 class="text-3xl font-bold text-center text-white mb-8">
@@ -13,7 +16,7 @@
           @click="openModal"
           class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md"
         >
-          Escribe tú Comentario.
+          Escribe tu Comentario.
         </button>
       </div>
       <!-- Contenedor de comentarios -->
@@ -71,9 +74,11 @@
     </section>
   </div>
 </template>
-
 <script setup>
 // Importaciones
+import { ref, onMounted } from "vue";
+import ModalForm from "~/components/ModalForm.vue"; // Asegúrate de que este archivo existe
+import Alert from "~/components/Alert.vue"; // Asegúrate de que este archivo existe
 import {
   isModalOpen,
   comments,
@@ -82,14 +87,26 @@ import {
   addComment,
   loadCommentsFromLocalStorage,
 } from "~/services/logica.js";
-import { onMounted } from "vue";
+
+// Estado para controlar la visibilidad de la alerta
+const showAlert = ref(false);
 
 // Cargar comentarios desde localStorage al montar el componente
 onMounted(() => {
   loadCommentsFromLocalStorage();
 });
-</script>
 
+// Función para manejar el envío del comentario
+const handleCommentSubmit = (formData) => {
+  addComment(formData); // Agregar el comentario
+  showAlert.value = true; // Mostrar la alerta
+};
+
+// Función para ocultar la alerta
+const hideAlert = () => {
+  showAlert.value = false;
+};
+</script>
 <style scoped>
 .section {
   /* Imagen de fondo */
@@ -99,5 +116,16 @@ onMounted(() => {
   background-repeat: no-repeat; /* Evita repetición */
   background-color: #333; /* Color de respaldo si la imagen no carga */
   min-height: 100vh; /* Altura mínima de la pantalla */
+}
+
+/* Animación para la entrada de la alerta */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0; /* Completamente transparente */
+  transform: scale(0.9); /* Ligeramente más pequeña */
 }
 </style>
