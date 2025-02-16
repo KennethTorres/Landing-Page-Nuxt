@@ -100,15 +100,14 @@
 </template>
 
 <script>
-// Importar imagen de fondo desde assets
 import backgroundImage from '@/assets/image/img6.png';
-import Congratulations from './Congratulations.vue'; // Importar el componente Congratulations
-import Warning from './Warning.vue'; // Importar el componente Warning
+import Congratulations from './Congratulations.vue'; 
+import Warning from './Warning.vue'; 
 
 export default {
   components: {
-    Congratulations, // Registrar el componente Congratulations
-    Warning, // Registrar el componente Warning
+    Congratulations,
+    Warning,
   },
   data() {
     return {
@@ -120,39 +119,32 @@ export default {
         email: "",
         mensaje: "",
       },
-      showCongratulations: false, // Controla la visibilidad del componente Congratulations
-      showWarning: false, // Controla la visibilidad del componente Warning
+      showCongratulations: false,
+      showWarning: false,
     };
   },
   methods: {
     validateField(field) {
-      // No se realizan validaciones adicionales, solo se verifica si el campo está vacío
       return;
     },
     isFieldValid(field) {
-      // Retorna verdadero si el campo tiene contenido, falso si está vacío
       return this.formData[field].trim() !== "";
     },
     handleSubmit() {
-      // Verificar si todos los campos están llenos
       const allFieldsFilled = Object.keys(this.formData).every(
         (field) => this.formData[field].trim() !== ""
       );
 
       if (!allFieldsFilled) {
-        // Mostrar el componente Warning
         this.showWarning = true;
         return;
       }
 
-      // Mostrar el componente Congratulations
       this.showCongratulations = true;
 
-      // Limpiar el formulario después de enviar
       this.resetForm();
     },
     resetForm() {
-      // Limpiar todos los campos del formulario
       this.formData = {
         nombre: "",
         apellido: "",
@@ -162,11 +154,9 @@ export default {
       };
     },
     closeCongratulations() {
-      // Ocultar el componente Congratulations
       this.showCongratulations = false;
     },
     closeWarning() {
-      // Ocultar el componente Warning
       this.showWarning = false;
     },
   },

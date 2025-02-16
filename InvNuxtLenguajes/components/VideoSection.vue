@@ -27,9 +27,8 @@
 </template>
 
 <script>
-// Importar imagen de fondo y video local desde assets
 import backgroundImage from '@/assets/image/fondo.jpg';
-import localVideo from '@/assets/video/CostaRicaNatureFilm.mp4'; // Importar video local
+import localVideo from '@/assets/video/CostaRicaNatureFilm.mp4';
 
 export default {
   data() {
@@ -38,7 +37,7 @@ export default {
       title: 'Explora el Mundo',
       description:
         'Sumérgete en experiencias únicas y descubre lugares asombrosos. Desde montañas nevadas hasta playas tropicales, cada rincón del mundo tiene algo especial que ofrecer. Acompáñanos en este viaje y vive momentos inolvidables.',
-      localVideo: localVideo, // Ruta del video local
+      localVideo: localVideo,
     };
   },
 };

@@ -160,15 +160,15 @@ export default {
         calificacion: "",
         descripcion: "",
       },
-      errors: {}, // Objeto para almacenar errores
+      errors: {},
     };
   },
   methods: {
     validateField(field) {
       if (this.formData[field].trim()) {
-        this.errors[field] = ""; // Limpiar error si el campo es válido
+        this.errors[field] = "";
       } else {
-        this.errors[field] = `El campo ${field} es obligatorio.`; // Marcar como inválido
+        this.errors[field] = `El campo ${field} es obligatorio.`;
       }
     },
     isFieldValid(field) {
@@ -179,9 +179,8 @@ export default {
         event.preventDefault();
         event.stopPropagation();
       }
-      this.errors = {}; // Limpiar errores previos
+      this.errors = {};
 
-      // Validaciones
       if (!this.formData.nombre.trim()) {
         this.errors.nombre = "El nombre es obligatorio.";
       }
@@ -198,13 +197,11 @@ export default {
         this.errors.descripcion = "La descripción es obligatoria.";
       }
 
-      // Si hay errores, detener el envío
       if (Object.keys(this.errors).length > 0) {
         console.log("Errores en el formulario:", this.errors);
         return;
       }
 
-      // Emitir el formulario si no hay errores
       console.log("Datos del formulario:", this.formData);
       this.$emit("submit", { ...this.formData });
       this.$emit("close");
@@ -218,7 +215,7 @@ export default {
         calificacion: "",
         descripcion: "",
       };
-      this.errors = {}; // Limpiar errores
+      this.errors = {};
     },
   },
 };

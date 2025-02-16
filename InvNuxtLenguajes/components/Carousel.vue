@@ -13,7 +13,6 @@
         <img :src="item.image" alt="Slider Image" class="w-full h-full object-cover" />
         <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent"></div>
         <div class="absolute left-10 top-1/4 max-w-md space-y-4">
-          <p class="text-sm uppercase tracking-widest">{{ item.category }}</p>
           <h2 class="text-5xl font-bold">{{ item.title }}</h2>
           <p class="text-lg">{{ item.description }}</p>
         </div>
@@ -59,7 +58,6 @@
 </template>
 
 <script>
-// Importar imágenes desde la carpeta assets
 import img1 from '@/assets/image/img1.jpg';
 import img2 from '@/assets/image/img2.jpg';
 import img3 from '@/assets/image/img3.jpg';
@@ -75,45 +73,40 @@ export default {
         {
           id: 1,
           image: img1,
-          category: 'design',
-          title: 'Slider 01',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?',
+          title: 'Montañas Salvajes',
+          description: 'Explora la serenidad de los lagos alpinos, rodeados de montañas imponentes y bosques vibrantes. El destino perfecto para los amantes de la naturaleza y la aventura.',
         },
         {
           id: 2,
           image: img2,
-          category: 'design',
-          title: 'Slider 02',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?',
+          title: 'Catedral Histórica',
+          description: 'Descubre la historia y el encanto de las grandes ciudades. Recorre monumentos icónicos y sumérgete en la cultura de cada destino.',
         },
         {
           id: 3,
           image: img3,
-          category: 'design',
-          title: 'Slider 03',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?',
+          title: 'Fiordo Noruego',
+          description: 'Navega por aguas cristalinas en un paisaje de ensueño. Una experiencia única para quienes buscan desconexión y paisajes inolvidables.',
         },
         {
           id: 4,
           image: img4,
-          category: 'design',
-          title: 'Slider 04',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?',
+          title: 'Refugio Silencioso',
+          description: 'Explora fiordos impresionantes y valles escondidos. Aventuras entre montañas, aguas turquesas y paisajes que parecen sacados de un cuento.',
         },
         {
           id: 5,
           image: img5,
-          category: 'design',
-          title: 'Slider 05',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?',
+          title: 'El Coliseo de Roma',
+          description: 'Viaja en el tiempo y descubre la majestuosidad del Coliseo. Roma te espera con su historia, su gastronomía y su inigualable encanto.',
         },
       ],
       thumbnails: [
-        { id: 1, image: img1, name: 'Name Slider 01' },
-        { id: 2, image: img2, name: 'Name Slider 02' },
-        { id: 3, image: img3, name: 'Name Slider 03' },
-        { id: 4, image: img4, name: 'Name Slider 04' },
-        { id: 5, image: img5, name: 'Name Slider 05' },
+        { id: 1, image: img1, name: 'Montañas Salvajes' },
+        { id: 2, image: img2, name: 'Catedral Histórica' },
+        { id: 3, image: img3, name: 'Fiordo Noruego' },
+        { id: 4, image: img4, name: 'Refugio Silencioso' },
+        { id: 5, image: img5, name: 'El Coliseo de Roma' },
       ],
     };
   },

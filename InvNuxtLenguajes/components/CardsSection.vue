@@ -5,7 +5,7 @@
         <h2 class="text-3xl font-bold text-center text-white mb-10">Descubre Lugares Increíbles</h2>
   
         <!-- Contenedor de Tarjetas -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 justify-center">
           <!-- Tarjeta 1 -->
           <div
             v-for="(card, index) in cards"
@@ -31,6 +31,7 @@
   import place2 from '@/assets/image/img2.jpg';
   import place3 from '@/assets/image/img3.jpg';
   import place4 from '@/assets/image/img4.jpg';
+  import place5 from '@/assets/image/img5.jpg';
   
   export default {
     data() {
@@ -55,6 +56,11 @@
             image: place4,
             title: 'Refugio Silencioso',
             description: 'Un hogar solitario rodeado de aguas tranquilas y paisaje montañoso.',
+          },
+          {
+            image: place5,
+            title: 'El Coliseo de Roma',
+            description: 'Viaja en el tiempo y descubre la majestuosidad del Coliseo.',
           },
         ],
       };

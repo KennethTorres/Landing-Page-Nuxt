@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gray-900 py-16">
     <!-- Título del Componente -->
-    <h2 class="text-3xl font-bold text-center text-white mb-10">Explora Nuestro Collage Abstracto</h2>
+    <h2 class="text-3xl font-bold text-center text-white mb-10">Explora Nuestro Colección de destinos</h2>
 
     <!-- Contenedor del Collage -->
     <div class="container mx-auto px-4">
@@ -15,7 +15,6 @@
             item.size,
           ]"
         >
-          <!-- Video -->
           <video
             v-if="item.type === 'video'"
             :src="item.src"
@@ -25,15 +24,12 @@
             class="w-full h-full object-cover"
           ></video>
 
-          <!-- Imagen -->
           <img
             v-else
             :src="item.src"
             alt="Collage Image"
             class="w-full h-full object-cover"
           />
-
-          <!-- Descripción en la Parte Inferior -->
           <div
             class="absolute bottom-4 left-4 text-white text-sm sm:text-base font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           >
@@ -46,75 +42,74 @@
 </template>
 
 <script>
-// Importar imágenes y videos desde la carpeta assets
 import img2 from '@/assets/image/img22.jpg';
 import img3 from '@/assets/image/img33.jpg';
 import img4 from '@/assets/image/img44.jpg';
-import img5 from '@/assets/image/img55.jpg';
+import img5 from '@/assets/image/img55.jpeg';
 import img7 from '@/assets/image/img7.png';
-import img8 from '@/assets/image/img8.jpg'; // Nueva imagen
-import video1 from '@/assets/video/video1.mp4'; // Video 1
-import video6 from '@/assets/video/video6.mp4'; // Video 6
+import img8 from '@/assets/image/img8.jpg';
+import video1 from '@/assets/video/video1.mp4';
+import video6 from '@/assets/video/video6.mp4';
 
 export default {
   data() {
     return {
       items: [
         {
-          type: 'video', // Tipo de contenido: video
+          type: 'video',
           src: video1,
           description:
-            'Un lugar mágico para explorar la naturaleza y desconectar del mundo.',
-          size: 'col-span-1 row-span-2', // Imagen más alta
-        },
-        {
-          type: 'image', // Tipo de contenido: imagen
-          src: img2,
-          description:
-            'Relájate en las playas más hermosas del mundo mientras disfrutas del sol.',
-          size: 'col-span-1 row-span-1', // Imagen estándar
+            'Un rincón tropical de ensueño con aguas cristalinas, arena dorada y acantilados cubiertos de vegetación. Un destino perfecto para relajarse y disfrutar del sol.',
+          size: 'col-span-1 row-span-2',
         },
         {
           type: 'image',
-          src: img8, // Nueva imagen
+          src: img2,
           description:
-            'Un viaje inolvidable por paisajes llenos de historia y cultura.',
-          size: 'col-span-1 row-span-1', // Imagen estándar
+            'Un espectacular lago rodeado de montañas con picos nevados, reflejando su belleza en las aguas turquesas. Un destino ideal para los amantes de la naturaleza y la aventura.',
+          size: 'col-span-1 row-span-1',
+        },
+        {
+          type: 'image',
+          src: img8,
+          description:
+            'Explora la majestuosidad de las antiguas ruinas mayas, testigos de una civilización fascinante. Historia, cultura y naturaleza en un solo lugar.',
+          size: 'col-span-1 row-span-1',
         },
         {
           type: 'image',
           src: img3,
           description:
-            'Descubre la vida urbana llena de energía y cultura moderna.',
-          size: 'col-span-2 row-span-1', // Imagen más ancha
+            'Escápate a un paraíso rodeado de palmeras y aguas cristalinas. Un destino de lujo para quienes buscan relajación y experiencias inolvidables.',
+          size: 'col-span-2 row-span-1',
         },
         {
           type: 'image',
           src: img4,
           description:
-            'Un refugio natural para desconectar del mundo y encontrar paz.',
-          size: 'col-span-1 row-span-1', // Imagen estándar
+            'El Lago Maroon Bells en Colorado te espera con sus aguas cristalinas que reflejan las majestuosas Montañas Rocosas.',
+          size: 'col-span-1 row-span-1',
         },
         {
           type: 'image',
           src: img5,
           description:
-            'Experimenta la belleza de los paisajes montañosos y su tranquilidad.',
-          size: 'col-span-1 row-span-1', // Imagen estándar
+            'El Castillo de Oberhofen se alza sobre las turquesas aguas del Lago Thun. Este castillo medieval, rodeado por los Alpes, combina historia y belleza natural en un entorno de cuento de hadas.',
+          size: 'col-span-1 row-span-1',
         },
         {
-          type: 'video', // Tipo de contenido: video
+          type: 'video',
           src: video6,
           description:
-            'Explora los secretos de la selva y su diversidad biológica.',
-          size: 'col-span-1 row-span-2', // Imagen más alta
+            'Nuestro destino invernal ofrece aventuras sobre cumbres nevadas con atardeceres espectaculares sobre un mar de nubes.',
+          size: 'col-span-1 row-span-2',
         },
         {
           type: 'image',
           src: img7,
           description:
-            'Sumérgete en la cultura local y vive experiencias únicas.',
-          size: 'col-span-2 row-span-1', // Imagen más ancha
+            'Machu Picchu, la legendaria ciudad inca en Perú, te invita a explorar sus misteriosas ruinas y terrazas, una experiencia única para los amantes de la cultura y la historia.',
+          size: 'col-span-2 row-span-1',
         },
       ],
     };
