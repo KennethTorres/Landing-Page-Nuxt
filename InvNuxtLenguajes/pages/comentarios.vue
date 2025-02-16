@@ -1,42 +1,55 @@
 <template>
   <div>
-    <!-- Header -->
-    <header class="header bg-blue-600 text-white py-4 px-6 flex justify-between items-center">
-      <NuxtLink to="/" class="text-xl font-bold hover:text-blue-300">Mi Página</NuxtLink>
-      <button @click="openModal" class="bg-white text-blue-600 font-bold py-2 px-4 rounded hover:bg-gray-200">
+    <!-- Encabezado -->
+    <header
+      class="header bg-blue-600 text-white py-4 px-6 flex justify-between items-center"
+    >
+      <NuxtLink to="/" class="text-xl font-bold hover:text-blue-300">
+        Mi Página
+      </NuxtLink>
+      <button
+        @click="openModal"
+        class="bg-white text-blue-600 font-bold py-2 px-4 rounded hover:bg-gray-200"
+      >
         Abrir Formulario
       </button>
     </header>
 
-    <!-- Modal -->
+    <!-- Modal de formulario -->
     <ModalForm v-if="isModalOpen" @close="closeModal" @submit="addComment" />
 
-    <!-- Comentarios -->
+    <!-- Sección de comentarios -->
     <section class="p-8 bg-gray-100">
       <h2 class="text-2xl font-bold mb-6 text-center">Comentarios</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Bucle para mostrar comentarios -->
         <div
-          v-for="(comment, index) in comments"
-          :key="index"
+          v-for="comment in comments"
+          :key="comment.id"
           class="bg-white p-6 rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300"
         >
-          <!-- Avatar -->
           <div class="flex items-center mb-4">
             <div
               class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4"
             >
-              {{ comment.nombre.charAt(0).toUpperCase() }}
+              {{
+                comment.nombre ? comment.nombre.charAt(0).toUpperCase() : "?"
+              }}
             </div>
             <div>
-              <h3 class="text-lg font-bold">{{ comment.nombre }} {{ comment.apellido }}</h3>
-              <p class="text-sm text-gray-500">{{ comment.ubicacion }}</p>
+              <h3 class="text-lg font-bold">
+                {{ comment.nombre || "Desconocido" }}
+                {{ comment.apellido || "" }}
+              </h3>
+              <p class="text-sm text-gray-500">
+                {{ comment.ubicacion || "N/A" }}
+              </p>
             </div>
           </div>
-          <!-- Calificación -->
           <div class="flex items-center mb-4">
             <span class="text-yellow-500 mr-2">
               <svg
-                v-for="star in parseInt(comment.calificacion)"
+                v-for="star in parseInt(comment.calificacion) || 0"
                 :key="star"
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5 fill-current"
@@ -47,58 +60,39 @@
                 />
               </svg>
             </span>
-            <span class="text-gray-600">{{ comment.calificacion }}/5</span>
+            <span class="text-gray-600">
+              {{ comment.calificacion || "0" }}/5
+            </span>
           </div>
-          <!-- Descripción -->
-          <p class="text-gray-700">{{ comment.descripcion }}</p>
+          <p class="text-gray-700">
+            {{ comment.descripcion || "Sin descripción." }}
+          </p>
         </div>
       </div>
     </section>
   </div>
 </template>
 
-<script>
-import ModalForm from '~/components/ModalForm.vue';
+<script setup>
+// Importaciones
+import {
+  isModalOpen,
+  comments,
+  openModal,
+  closeModal,
+  addComment,
+  loadCommentsFromLocalStorage,
+} from "~/services/logica.js";
+import { onMounted } from "vue";
 
-export default {
-  components: { ModalForm },
-  data() {
-    return {
-      isModalOpen: false,
-      comments: [], // Array para almacenar los comentarios
-    };
-  },
-  methods: {
-    openModal() {
-      this.isModalOpen = true;
-    },
-    closeModal() {
-      this.isModalOpen = false;
-    },
-    addComment(comment) {
-      this.comments.push(comment); // Agregar el comentario al array
-      this.saveCommentsToLocalStorage(); // Guardar en localStorage
-      this.closeModal(); // Cerrar el modal después de enviar
-    },
-    saveCommentsToLocalStorage() {
-      localStorage.setItem('comments', JSON.stringify(this.comments));
-    },
-    loadCommentsFromLocalStorage() {
-      const savedComments = localStorage.getItem('comments');
-      if (savedComments) {
-        this.comments = JSON.parse(savedComments);
-      }
-    },
-  },
-  mounted() {
-    this.loadCommentsFromLocalStorage(); // Cargar comentarios al cargar la página
-  },
-};
+// Cargar comentarios desde localStorage al montar el componente
+onMounted(() => {
+  loadCommentsFromLocalStorage();
+});
 </script>
 
 <style scoped>
-/* Estilo personalizado para el header */
 .header {
-  background-image: url('assets/image/fondo.jpg'); /* Asegúrate de que esta imagen exista */
+  background-image: url("assets/image/fondo.jpg");
 }
 </style>
