@@ -1,33 +1,32 @@
 <template>
   <div>
-    <!-- Encabezado -->
-    <header
-      class="header bg-blue-600 text-white py-4 px-6 flex justify-between items-center"
-    >
-      <NuxtLink to="/" class="text-xl font-bold hover:text-blue-300">
-        Mi Página
-      </NuxtLink>
-      <button
-        @click="openModal"
-        class="bg-white text-blue-600 font-bold py-2 px-4 rounded hover:bg-gray-200"
-      >
-        Abrir Formulario
-      </button>
-    </header>
-
     <!-- Modal de formulario -->
     <ModalForm v-if="isModalOpen" @close="closeModal" @submit="addComment" />
+    <section class="section p-8 bg-gray-100">
+      <!-- Título -->
+      <h2 class="text-3xl font-bold text-center text-white mb-8">
+        Comentarios
+      </h2>
 
-    <!-- Sección de comentarios -->
-    <section class="p-8 bg-gray-100">
-      <h2 class="text-2xl font-bold mb-6 text-center">Comentarios</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Botón para abrir el formulario -->
+      <div class="flex justify-center mb-8">
+        <button
+          @click="openModal"
+          class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md"
+        >
+          Escribe tú Comentario.
+        </button>
+      </div>
+
+      <!-- Contenedor de comentarios -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Bucle para mostrar comentarios -->
         <div
-          v-for="comment in comments"
-          :key="comment.id"
-          class="bg-white p-6 rounded-lg shadow-xl transform hover:scale-105 transition-transform duration-300"
+          v-for="(comment, index) in comments"
+          :key="index"
+          class="bg-white bg-opacity-80 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:scale-[1.03]"
         >
+          <!-- Avatar y nombre -->
           <div class="flex items-center mb-4">
             <div
               class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4"
@@ -37,7 +36,7 @@
               }}
             </div>
             <div>
-              <h3 class="text-lg font-bold">
+              <h3 class="text-lg font-semibold text-gray-800">
                 {{ comment.nombre || "Desconocido" }}
                 {{ comment.apellido || "" }}
               </h3>
@@ -46,6 +45,8 @@
               </p>
             </div>
           </div>
+
+          <!-- Calificación -->
           <div class="flex items-center mb-4">
             <span class="text-yellow-500 mr-2">
               <svg
@@ -60,10 +61,12 @@
                 />
               </svg>
             </span>
-            <span class="text-gray-600">
-              {{ comment.calificacion || "0" }}/5
-            </span>
+            <span class="text-gray-600"
+              >{{ comment.calificacion || "0" }}/5</span
+            >
           </div>
+
+          <!-- Descripción -->
           <p class="text-gray-700">
             {{ comment.descripcion || "Sin descripción." }}
           </p>
@@ -92,7 +95,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.header {
+.section {
   background-image: url("assets/image/fondo.jpg");
 }
 </style>

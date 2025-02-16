@@ -1,23 +1,28 @@
 import { ref } from "vue";
 
-const isModalOpen = ref(false);
-const comments = ref([]);
+// Estado del modal
+export const isModalOpen = ref(false);
 
-const openModal = () => {
+// Lista de comentarios
+export const comments = ref([]);
+
+// Función para abrir el modal
+export const openModal = () => {
   isModalOpen.value = true;
 };
 
-const closeModal = () => {
+// Función para cerrar el modal
+export const closeModal = () => {
   isModalOpen.value = false;
 };
 
-const addComment = (comment) => {
+// Función para agregar un comentario
+export const addComment = (comment) => {
   console.log("Comentario recibido:", comment);
   if (!comment || typeof comment !== "object") {
     console.error("El comentario no es válido:", comment);
     return;
   }
-
   const nuevoComentario = {
     nombre: comment.nombre?.trim() || "Anónimo",
     apellido: comment.apellido?.trim() || "",
@@ -25,18 +30,19 @@ const addComment = (comment) => {
     calificacion: comment.calificacion ? String(comment.calificacion) : "0",
     descripcion: comment.descripcion?.trim() || "Sin descripción",
   };
-
   comments.value.push(nuevoComentario);
   saveCommentsToLocalStorage();
   closeModal();
 };
 
+// Guardar comentarios en localStorage
 const saveCommentsToLocalStorage = () => {
   console.log("Guardando comentarios en localStorage:", comments.value);
   localStorage.setItem("comments", JSON.stringify(comments.value));
 };
 
-const loadCommentsFromLocalStorage = () => {
+// Cargar comentarios desde localStorage
+export const loadCommentsFromLocalStorage = () => {
   const savedComments = localStorage.getItem("comments");
   console.log("Cargando comentarios desde localStorage:", savedComments);
   if (savedComments) {
@@ -60,14 +66,4 @@ const loadCommentsFromLocalStorage = () => {
       console.error("Error al parsear los comentarios desde localStorage:", error);
     }
   }
-};
-
-// Exporta todas las funciones y variables necesarias
-export {
-  isModalOpen,
-  comments,
-  openModal,
-  closeModal,
-  addComment,
-  loadCommentsFromLocalStorage,
 };
