@@ -30,6 +30,7 @@
           viewBox="0 0 24 24"
           stroke="currentColor"
           class="w-8 h-8 text-gray-300 cursor-pointer hover:text-white transition duration-300"
+          @click="toggleMenu"
         >
           <path
             stroke-linecap="round"
@@ -39,19 +40,50 @@
           />
         </svg>
       </div>
+      <!-- Menú desplegable centrado -->
+      <div
+        v-if="isMenuOpen"
+        class="fixed inset-0 flex items-start justify-center backdrop-blur-sm bg-black bg-opacity-50 z-40 md:hidden"
+      >
+        <ul class="mt-20 space-y-6 text-center">
+          <li class="text-lg font-bold text-white hover:text-gray-300">
+            <NuxtLink to="/" @click="closeMenu">Inicio</NuxtLink>
+          </li>
+          <li class="text-lg font-bold text-white hover:text-gray-300">
+            <NuxtLink to="/#contacto" @click="closeMenu">Contacto</NuxtLink>
+          </li>
+          <li class="text-lg font-bold text-white hover:text-gray-300">
+            <NuxtLink to="/comentarios" @click="closeMenu">Comentarios</NuxtLink>
+          </li>
+        </ul>
+      </div>
     </header>
-
     <!-- Contenido Dinámico con Transiciones -->
     <NuxtPage />
     <footer>
       <FooterSection />
     </footer>
-    
   </div>
 </template>
+
 <script setup>
+import { ref } from "vue";
 import FooterSection from "@/components/FooterSection.vue";
+
+// Estado para controlar la visibilidad del menú
+const isMenuOpen = ref(false);
+
+// Función para alternar el menú
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
+
+// Función para cerrar el menú
+const closeMenu = () => {
+  isMenuOpen.value = false;
+};
 </script>
+
 <style>
 /* Estilos para las transiciones de página */
 .page-enter-active,
@@ -69,5 +101,4 @@ header {
   background-color: rgba(0, 0, 0, 0.8);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 </style>
